@@ -83,6 +83,7 @@
     [_subscriber.view removeFromSuperview];
     [self unsubscribe];
     _subscriber.delegate = nil;
+    _subscriber.networkStatsDelegate = nil;
     _subscriber = nil;
 }
 
