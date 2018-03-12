@@ -26,6 +26,8 @@ RCT_EXPORT_VIEW_PROPERTY(video, BOOL)
 
 RCT_EXPORT_VIEW_PROPERTY(screenCapture, BOOL)
 
+RCT_EXPORT_VIEW_PROPERTY(testNetwork, BOOL)
+
 RCT_EXPORT_VIEW_PROPERTY(screenCaptureSettings, NSDictionary)
 
 - (UIView *)view {

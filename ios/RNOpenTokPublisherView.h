@@ -28,6 +28,9 @@
  * Define whether to capture screen or camera.
  */
 @property (nonatomic, assign) BOOL screenCapture;
+
+@property (nonatomic, assign) BOOL testNetwork;
+
 /**
  * Define settings for screen capture.
  */

@@ -9,21 +9,21 @@ import type { ViewProps } from "ViewPropTypes";
 export type MessageEvent = {|
   sessionId: string,
   type: string,
-  data: string,
+  data: string
 |};
 
 export type RNOpenTokEventCallback = (event: { [key: string]: string }) => void;
 
 export type OpenTokEvent =
-  | 'onSignalReceived'
-  | 'onSessionConnectionCreated'
-  | 'onSessionConnectionDestroyed'
-  | 'onSessionDidConnect'
-  | 'onSessionDidDisconnect'
-  | 'onSessionDidFailWithError'
-  | 'onSessionStreamCreated'
-  | 'onSessionStreamDestroyed'
-  | 'errorNoScreenCaptureView';
+  | "onSignalReceived"
+  | "onSessionConnectionCreated"
+  | "onSessionConnectionDestroyed"
+  | "onSessionDidConnect"
+  | "onSessionDidDisconnect"
+  | "onSessionDidFailWithError"
+  | "onSessionStreamCreated"
+  | "onSessionStreamDestroyed"
+  | "errorNoScreenCaptureView";
 
 type OpenTokViewProps = {|
   ...$Exact<ViewProps>,
@@ -33,13 +33,13 @@ type OpenTokViewProps = {|
   accessibilityLabel?: any,
   sessionId: string,
   mute?: boolean,
-  video?: boolean,
+  video?: boolean
 |};
 
 type Listeners = {|
   listeners: {
-    [listenerName: string]: RNOpenTokEventCallback,
-  },
+    [listenerName: string]: RNOpenTokEventCallback
+  }
 |};
 
 export type PublisherProps = {|
@@ -49,8 +49,8 @@ export type PublisherProps = {|
   onPublishError?: () => void,
   screenCapture?: boolean,
   screenCaptureSettings?: {
-    fps?: number,
-  },
+    fps?: number
+  }
 |};
 
 export type SubscriberProps = {|
@@ -58,14 +58,16 @@ export type SubscriberProps = {|
   onSubscribeStart?: () => void,
   onSubscribeStop?: () => void,
   onSubscribeError?: () => void,
+  onSubscribeVideoNetworkStatsUpdated?: () => void,
+  onSubscribeAudioNetworkStatsUpdated?: () => void
 |};
 
 export type SubscriberViewProps = {
   ...SubscriberProps,
-  ...Listeners,
+  ...Listeners
 };
 
 export type PublisherViewProps = {
   ...PublisherProps,
-  ...Listeners,
+  ...Listeners
 };
