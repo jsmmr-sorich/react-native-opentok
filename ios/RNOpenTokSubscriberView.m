@@ -143,14 +143,14 @@
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"onSubscribeVideoNetworkStatsUpdated"
      object:nil
-     userInfo:@{@"videoPacketsLost": [NSNumber numberWithUnsignedLongLong: stats.videoPacketsLost], @"videoPacketsReceived": [NSNumber numberWithUnsignedLongLong: stats.videoPacketsReceived], @"videoBytesReceived": [NSNumber numberWithUnsignedLongLong: stats.videoBytesReceived], @"timestamp": (double)stats.timestamp }];
+     userInfo:@{@"videoPacketsLost": [NSNumber numberWithUnsignedLongLong: stats.videoPacketsLost], @"videoPacketsReceived": [NSNumber numberWithUnsignedLongLong: stats.videoPacketsReceived], @"videoBytesReceived": [NSNumber numberWithUnsignedLongLong: stats.videoBytesReceived], @"timestamp": [NSNumber numberWithDouble:stats.timestamp] }];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber audioNetworkStatsUpdated:(OTSubscriberKitAudioNetworkStats*)stats {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"onSubscribeAudioNetworkStatsUpdated"
      object:nil
-     userInfo:@{@"audioPacketsLost": [NSNumber numberWithUnsignedLongLong: stats.audioPacketsLost], @"audioPacketsReceived": [NSNumber numberWithUnsignedLongLong: stats.audioPacketsReceived], @"audioBytesReceived": [NSNumber numberWithUnsignedLongLong: stats.audioBytesReceived], @"timestamp": (double)stats.timestamp }];
+     userInfo:@{@"audioPacketsLost": [NSNumber numberWithUnsignedLongLong: stats.audioPacketsLost], @"audioPacketsReceived": [NSNumber numberWithUnsignedLongLong: stats.audioPacketsReceived], @"audioBytesReceived": [NSNumber numberWithUnsignedLongLong: stats.audioBytesReceived], @"timestamp": [NSNumber numberWithDouble:stats.timestamp] }];
 }
 
 @end
