@@ -9,6 +9,9 @@ import com.opentok.android.Session;
 import com.opentok.android.Stream;
 import com.opentok.android.Subscriber;
 import com.opentok.android.SubscriberKit;
+import com.opentok.android.SubscriberKit.SubscriberAudioStats;
+import com.opentok.android.SubscriberKit.SubscriberVideoStats;
+
 
 public class RNOpenTokSubscriberView extends RNOpenTokView implements SubscriberKit.SubscriberListener, SubscriberKit.VideoStatsListener, SubscriberKit.AudioStatsListener {
     private Subscriber mSubscriber;
@@ -50,6 +53,8 @@ public class RNOpenTokSubscriberView extends RNOpenTokView implements Subscriber
     private void startSubscribing(Stream stream) {
         mSubscriber = new Subscriber(getContext(), stream);
         mSubscriber.setSubscriberListener(this);
+        mSubscriber.setVideoStatsListener(this);
+        mSubscriber.setAudioStatsListener(this);
         mSubscriber.setSubscribeToAudio(mAudioEnabled);
         mSubscriber.setSubscribeToVideo(mVideoEnabled);
 
