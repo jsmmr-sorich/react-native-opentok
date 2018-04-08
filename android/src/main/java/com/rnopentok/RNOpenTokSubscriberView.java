@@ -104,18 +104,18 @@ public class RNOpenTokSubscriberView extends RNOpenTokView implements Subscriber
         WritableMap payload = Arguments.createMap();
         payload.putInt("videoPacketsReceived", stats.videoPacketsLost);
         payload.putInt("videoPacketsLost", stats.videoPacketsLost);
-        payload.putBoolean("videoBytesReceived", stats.videoBytesReceived);
+        payload.putInt("videoBytesReceived", stats.videoBytesReceived);
         payload.putDouble("timestamp", stats.timeStamp);
 
         sendEvent(Events.EVENT_SUBSCRIBE_VIDEO_NETWORK_STATS_UPDATE, payload);
     }
 
     @Override
-    public void onAudioStats(SubscriberKit subscriber, SubscriberKit.AudioStatsListener stats) {
+    public void onAudioStats(SubscriberKit subscriber, SubscriberKit.SubscriberAudioStats stats) {
         WritableMap payload = Arguments.createMap();
         payload.putInt("audioPacketsReceived", stats.audioPacketsLost);
         payload.putInt("audioPacketsLost", stats.audioPacketsLost);
-        payload.putBoolean("audioBytesReceived", stats.audioBytesReceived);
+        payload.putInt("audioBytesReceived", stats.audioBytesReceived);
         payload.putDouble("timestamp", stats.timeStamp);
 
         sendEvent(Events.EVENT_SUBSCRIBE_AUDIO_NETWORK_STATS_UPDATE, payload);
