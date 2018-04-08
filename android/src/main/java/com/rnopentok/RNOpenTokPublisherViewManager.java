@@ -35,6 +35,12 @@ public class RNOpenTokPublisherViewManager extends RNOpenTokViewManager<RNOpenTo
         }
     }
 
+    @ReactProp(name = "testNetwork")
+    public void setTestNetwork(RNOpenTokPublisherView view, Boolean testNetwork) {
+        view.setTestNetwork(testNetwork);
+    }
+
+
     @ReactProp(name = "screenCapture")
     public void setScreenCapture(RNOpenTokPublisherView view, Boolean screenCapture) {
         view.setScreenCapture(screenCapture);

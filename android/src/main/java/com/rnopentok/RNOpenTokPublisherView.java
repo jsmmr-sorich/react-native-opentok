@@ -19,6 +19,7 @@ public class RNOpenTokPublisherView extends RNOpenTokView implements PublisherKi
     private Boolean mVideoEnabled;
     private Boolean mScreenCapture;
     private ReadableMap mScreenCaptureSettings;
+    private Boolean mTestNetwork;
 
     public RNOpenTokPublisherView(ThemedReactContext context) {
         super(context);
@@ -56,6 +57,10 @@ public class RNOpenTokPublisherView extends RNOpenTokView implements PublisherKi
         if (mPublisher != null) {
             mPublisher.cycleCamera();
         }
+    }
+
+    public void setTestNetwork(Boolean enabled) {
+        mTestNetwork = enabled;
     }
 
     public void setScreenCapture(Boolean enabled) {
@@ -125,6 +130,13 @@ public class RNOpenTokPublisherView extends RNOpenTokView implements PublisherKi
     @Override
     public void onStreamCreated(PublisherKit publisherKit, Stream stream) {
         sendEvent(Events.EVENT_PUBLISH_START, Arguments.createMap());
+
+        if (mTestNetwork) {
+            RNOpenTokSessionManager sessionManager = RNOpenTokSessionManager.getSessionManager();
+            Session session = sessionManager.getSession(mSessionId);
+
+            sessionManager.onStreamReceived(session, stream);
+        }
     }
 
     @Override
