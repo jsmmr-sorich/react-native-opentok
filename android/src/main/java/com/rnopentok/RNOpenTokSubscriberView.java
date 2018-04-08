@@ -10,7 +10,7 @@ import com.opentok.android.Stream;
 import com.opentok.android.Subscriber;
 import com.opentok.android.SubscriberKit;
 
-public class RNOpenTokSubscriberView extends RNOpenTokView implements SubscriberKit.SubscriberListener {
+public class RNOpenTokSubscriberView extends RNOpenTokView implements SubscriberKit.SubscriberListener, SubscriberKit.VideoStatsListener, SubscriberKit.AudioStatsListener {
     private Subscriber mSubscriber;
     private Boolean mAudioEnabled;
     private Boolean mVideoEnabled;
@@ -97,6 +97,28 @@ public class RNOpenTokSubscriberView extends RNOpenTokView implements Subscriber
         payload.putString("connectionId", opentokError.toString());
 
         sendEvent(Events.EVENT_SUBSCRIBE_ERROR, payload);
+    }
+
+    @Override
+    public void onVideoStats(SubscriberKit subscriber, SubscriberKit.SubscriberVideoStats stats) {
+        WritableMap payload = Arguments.createMap();
+        payload.putInt("videoPacketsReceived", stats.videoPacketsLost);
+        payload.putInt("videoPacketsLost", stats.videoPacketsLost);
+        payload.putBoolean("videoBytesReceived", stats.videoBytesReceived);
+        payload.putDouble("timestamp", stats.timeStamp);
+
+        sendEvent(Events.EVENT_SUBSCRIBE_VIDEO_NETWORK_STATS_UPDATE, payload);
+    }
+
+    @Override
+    public void onAudioStats(SubscriberKit subscriber, SubscriberKit.AudioStatsListener stats) {
+        WritableMap payload = Arguments.createMap();
+        payload.putInt("audioPacketsReceived", stats.audioPacketsLost);
+        payload.putInt("audioPacketsLost", stats.audioPacketsLost);
+        payload.putBoolean("audioBytesReceived", stats.audioBytesReceived);
+        payload.putDouble("timestamp", stats.timeStamp);
+
+        sendEvent(Events.EVENT_SUBSCRIBE_AUDIO_NETWORK_STATS_UPDATE, payload);
     }
 
 }
